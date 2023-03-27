@@ -1,0 +1,10 @@
+[virt-viewer]
+type=vnc
+title=TD6-préparation-SAE
+host=one-dell2
+port=10872
+proxy=http://one-frontend:29876?token=vnzqvl8gngn6xahqrnus
+fullscreen=0
+toggle-fullscreen=shift+f11
+release-cursor=shift+f12
+secure-attention=ctrl+alt+end
