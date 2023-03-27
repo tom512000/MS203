@@ -1,0 +1,4 @@
+# Suppression de tous les fichiers temporaires du dépôt git distant
+~$*
+# Suppression de tous les fichiers ayant une extension ~ du dépôt git distant
+.~*
