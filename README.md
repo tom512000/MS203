@@ -17,11 +17,53 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - Adresse IP : `10.31.5.249`
 
 ## 1. Gestion des services : `systemd`
+**Travail à réaliser**
 - `systemctl action cible [option(s)]` : Consultation du manuel de la commande systemctl.
 - `systemctl` : Affichage de la liste des services démarrés avec la commande.
 - `sudo apt-get install openssh-server` : Installation du paquet sshd.
 - `ssh 10.31.5.249` : Vérification du démarrage du service sshd.
-- `exit` : Déconnection.
+- `exit` : Déconnexion.
 - `sudo systemctl stop ssh` : Arrêt du service sshd.
-- `ssh 10.31.5.249` : Reconnection.
+- `ssh 10.31.5.249` : Reconnexion.
 - `sudo systemctl start ssh` : Redémarrage du service sshd.
+
+## 2. Serveur Web apache2
+**Travail à réaliser**
+- `sudo apt-get install apache2` : Installation du paquet apache2 (4 erreurs).
+- `sudo apt-get upgrade` : Mise à jour de tous les paquets installés sur le système.
+- `sudo apt-get update` : Mise à jour des informations de dépôt de paquets sur le système.
+- `sudo reboot` : Redémarrage du système d'exploitation.
+- `sudo apt-get install apache2` : Réinstallation du paquet apache2.
+- `systemctl start apache2` : Vérification du démarrage du service apache2.
+- Vérification du bon fonctionnement du serveur Web (**http://10.31.5.249**).
+- Exploration du contenu du répertoire */etc/apache2*.
+- `cat apache2.conf` : Lecture du fonctionnement de la configuration au début du fichier.
+- Les répertoires *conf-enabled*, *mods-enabled* et *sites-enabled* renvoient à des liens symboliques (répertoire qui pointe vers un autre emplacement dans le système de fichiers).
+- `man a2enmod` : Consultation du manuel de la commande a2enmod.
+- `sudo a2enmod userdir` : Activation des pages d'accueil des utilisateurs à l'aide du module userdir.
+- `systemctl restart apache2` : Redémarrage du service apache2.
+- `sudo mkdir public_html` : Création du répertoire *public_html* dans le répertoire d’accueil de l'utilisateur iut.
+- `sudo chown iut:www-data /` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire d’accueil.
+- `sudo chown iut:www-data public_html` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire *public_html*.
+- `sudo chmod 755 public_html` : Affectation des droits par défaut pour le répertoire public_html.
+- Vérification du bon fonctionnement du serveur Web (**http://10.31.5.249/~iut**).
+- `sudo nano /etc/apache2/mods-available/userdir.conf` : Désactivation du mécanisme de listage des répertoires en supprimant l'option `Indexes` du fichier *userdir.conf*.
+- Vérification de la désactivation du listages des répertoires (**http://10.31.5.249/~iut**).
+- `touch public_html/bienvenue.html` : Création d'un fichier *bienvenue.html* dans le répertoire *public_html*.
+- `sudo nano public_html/bienvenue.html` : Modification du fichier *bienvenue.html*.
+- Vérification du bon fonctionnement du serveur Web (**http://10.31.5.249/~iut/bienvenue.html**).
+
+**Configuration d'un serveur Web virtuel**
+- `nslookup 10.31.5.249` : Récupération du nom DNS de notre machine virtuelle.
+- Création d'un deuxième serveur Web (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
+- `sudo mkdir ~/mon_serveur` : Création d'un répertoire de travail *mon_serveur* dans le répertoire d'accueil.
+- `sudo chown iut:www-data mon_serveur/` : Attribution des droits d'accès au répertoire *mon_serveur* pour l'utilisateur www-data.
+- `ln -s /home/iut/mon_serveur /var/www` : Création d'un lien symbolique du répertoire *mon_serveur* vers l'arborescence */var/www*.
+- `touch mon_serveur/index.html` : Création d'un fichier *index.html* dans le répertoire *mon_serveur*.
+- `sudo nano mon_serveur/index.html` : Modification du fichier *index.html*.
+- `cd /etc/apache2/sites-available` : Déplacement dans le répertoire */etc/apache2/sites-available*.
+- `sudo cp 000-default.conf 2A4V1-31UVM249.conf` : Copie du fichier *000-default.conf* en *2A4V1-31UVM249.conf*.
+- `sudo nano 2A4V1-31UVM249.conf` : Modification du fichier *2A4V1-31UVM249.conf*.
+- `sudo a2ensite 2A4V1-31UVM249` : Activation du site.
+- `systemctl reload apache2` : Rechargement de la configuration d'apache.
+- Vérification de l'accès du serveur (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
