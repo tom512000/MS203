@@ -81,3 +81,13 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `a2ensite mon-serveur-ssl.conf` : Activation de notre site.
 - `systemctl restart apache2` : Redémarrage du service apache2.
 - Vérification de l'accès aux pages (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
+
+## 4. Langage de programmation PHP
+**Travail à réaliser**
+- `sudo apt-get install php` : Installation du paquet php.
+- `sudo apt-get install libapache2-mod-php` : Installation du paquet libapache2-mod-php.
+- `sudo nano /etc/apache2/mods-enabled/php7.4.conf` : Modification du fichier *php7.4.conf*.
+- `systemctl restart apache2` : Redémarrage du service apache2.
+- `touch public_html/index.php` : Création d'un fichier *index.php* dans le répertoire *public_html*.
+- `sudo nano public_html/index.php` : Modification du fichier *index.php*.
+- Vérification de l'accès à la page (**http://10.31.5.249/~iut/index.php**).
