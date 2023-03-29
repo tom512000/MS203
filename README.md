@@ -58,7 +58,7 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - Création d'un deuxième serveur Web (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
 - `sudo mkdir ~/mon_serveur` : Création d'un répertoire de travail *mon_serveur* dans le répertoire d'accueil.
 - `sudo chown iut:www-data mon_serveur/` : Attribution des droits d'accès au répertoire *mon_serveur* pour l'utilisateur www-data.
-- `ln -s /home/iut/mon_serveur /var/www` : Création d'un lien symbolique du répertoire *mon_serveur* vers l'arborescence */var/www*.
+- `sudo ln -s /home/iut/mon_serveur /var/www` : Création d'un lien symbolique du répertoire *mon_serveur* vers l'arborescence */var/www*.
 - `touch mon_serveur/index.html` : Création d'un fichier *index.html* dans le répertoire *mon_serveur*.
 - `sudo nano mon_serveur/index.html` : Modification du fichier *index.html*.
 - `cd /etc/apache2/sites-available` : Déplacement dans le répertoire */etc/apache2/sites-available*.
@@ -67,3 +67,17 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `sudo a2ensite 2A4V1-31UVM249` : Activation du site.
 - `systemctl reload apache2` : Rechargement de la configuration d'apache.
 - Vérification de l'accès du serveur (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
+
+## 3. Serveur Web sécurisé https
+**Travail à réaliser**
+- `dpkg -l | grep ssl` : Vérification de la présence des paquets libssl, openssl et ssl-cert.
+- Aucun paquets manquants.
+- `sudo mkdir /etc/apache2/ssl` : Création d'un répertoire pour stocker le certificat.
+- `sudo /usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem` : Création du certificat correspondant à notre site dans le répertoire */etc/apache2/ssl*.
+- `nano /etc/apache2/ports.conf` : Vérification du port d'écoute par défaut en ssl (443).
+- `cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/mon-serveur-ssl.conf` : Création du fichier de configuration VirtualHost de notre serveur ssl.
+- `sudo nano /etc/apache2/sites-available/mon-serveur-ssl.conf` : Modification du fichier *mon-serveur-ssl.conf*.
+- `a2enmod ssl` : Activation du module ssl d'apache.
+- `a2ensite mon-serveur-ssl.conf` : Activation de notre site.
+- `systemctl restart apache2` : Redémarrage du service apache2.
+- Vérification de l'accès aux pages (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
