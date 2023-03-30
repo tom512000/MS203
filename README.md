@@ -91,3 +91,15 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `touch public_html/index.php` : Création d'un fichier *index.php* dans le répertoire *public_html*.
 - `sudo nano public_html/index.php` : Modification du fichier *index.php*.
 - Vérification de l'accès à la page (**http://10.31.5.249/~iut/index.php**).
+
+## 5. Serveur de base de données MySQL
+**Travail à réaliser**
+- `sudo apt-get install mysql-server` : Installation du paquet mysql-server.
+- `systemctl start mysql` : Démarrage du service mysql.
+- `sudo mysql_secure_installation` : Configuration de la sécurité de mysql (mot de passe : iutinfo#S2).
+- `mysql -u root -p` : Connexion en tant que root.
+- `mysql> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admininfo#S2';` : Création de l'utilisateur admin avec le mot de passe admininfo#S2.
+- `mysql> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;` : Attribution des privilèges à l'utilisateur admin.
+- `exit` : Sortie de mysql.
+- `systemctl restart mysql` : Redémarrage du service mysql.
+- `mysqlshow -u admin -p` : Teste du serveur.
