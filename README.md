@@ -103,3 +103,15 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `exit` : Sortie de mysql.
 - `systemctl restart mysql` : Redémarrage du service mysql.
 - `mysqlshow -u admin -p` : Teste du serveur.
+
+## 6. Outil d'administration de bases de données phpMyAdmin
+**Travail à réaliser**
+- `sudo apt-get install phpmyadmin` : Installation du paquet phpmyadmin (problème de mot de passe).
+- `mysql -u root -p` : Connexion en tant que root.
+- `mysql> UNINSTALL COMPONENT 'file://component_validate_password';` : Suppression de la validation de mot de passe sécurisé.
+- `sudo apt-get install phpmyadmin` : Réinstallation du paquet phpmyadmin (mot de passe : iutinfo).
+- `sudo phpenmod mbstring` : Activation du module de gestion des chaînes de caractères multi-octets de php.
+- `systemctl restart apache2` : Redémarrage du service apache2.
+- Vérification de l'accès à la page (**http://2a4v1-31uvm249.ad-urca.univ-reims.fr/phpmyadmin/**).
+- Création de l'utilisateur mysqltest (option "Créer une base portant son nom", tous les privilèges et mot de passe : sqltest#S2).
+- Vérification de la connexion à phpMyMdmin avec l'utilisateur mysqltest.
