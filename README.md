@@ -45,7 +45,7 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `sudo mkdir public_html` : Création du répertoire *public_html* dans le répertoire d’accueil de l'utilisateur iut.
 - `sudo chown iut:www-data /` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire d’accueil.
 - `sudo chown iut:www-data public_html` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire *public_html*.
-- `sudo chmod 755 public_html` : Affectation des droits par défaut pour le répertoire public_html.
+- `sudo chmod 755 public_html` : Affectation des droits par défaut pour le répertoire *public_html*.
 - Vérification du bon fonctionnement du serveur Web (**http://10.31.5.249/~iut**).
 - `sudo nano /etc/apache2/mods-available/userdir.conf` : Désactivation du mécanisme de listage des répertoires en supprimant l'option `Indexes` du fichier *userdir.conf*.
 - Vérification de la désactivation du listages des répertoires (**http://10.31.5.249/~iut**).
@@ -115,3 +115,17 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - Vérification de l'accès à la page (**http://2a4v1-31uvm249.ad-urca.univ-reims.fr/phpmyadmin/**).
 - Création de l'utilisateur mysqltest (option "Créer une base portant son nom", tous les privilèges et mot de passe : sqltest#S2).
 - Vérification de la connexion à phpMyMdmin avec l'utilisateur mysqltest.
+
+## 7. Installation du CMS WordPress
+**Travail à réaliser**
+- `cd mon_serveur` : Placement dans le répertoire *mon_serveur*.
+- `wget https://fr.wordpress.org/latest-fr_FR.zip` : Téléchargement de l’archive WordPress dans le répertoire personnel de l'utilisateur iut.
+- `sudo apt-get install unzip` : Installation du paquet unzip.
+- `unzip latest-fr_FR.zip` : Decompression du fichier *latest-fr_FR.zip*.
+- `sudo chown -R iut:www-data .` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire courant.
+- `sudo chmod -R 775 wordpress/` : Affectation des droits par défaut pour le répertoire *wordpress*.
+- `mysql -u root -p` : Connexion en tant que root.
+- `mysql> CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'iutinfo';` : Création de l'utilisateur wordpress avec le mot de passe iutinfo.
+- `mysql> CREATE DATABASE wordpressdatabase;` : Création d'une nouvelle base de données appelée wordpressdatabase.
+- `mysql> GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';` : Attribution des privilèges à l'utilisateur wordpress.
+- Vérification de l'accès à la page (**http://2a4v1-31uvm249.ad-urca.univ-reims.fr/wordpress/wp-admin/setup-config.php**).
