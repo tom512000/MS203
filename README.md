@@ -34,7 +34,7 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `sudo apt-get update` : Mise à jour des informations de dépôt de paquets sur le système.
 - `sudo reboot` : Redémarrage du système d'exploitation.
 - `sudo apt-get install apache2` : Réinstallation du paquet apache2.
-- `systemctl start apache2` : Vérification du démarrage du service apache2.
+- `systemctl start apache2` : Démarrage du service apache2.
 - Vérification du bon fonctionnement du serveur Web (**http://10.31.5.249**).
 - Exploration du contenu du répertoire */etc/apache2*.
 - `cat apache2.conf` : Lecture du fonctionnement de la configuration au début du fichier.
@@ -66,7 +66,7 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `sudo nano 2A4V1-31UVM249.conf` : Modification du fichier *2A4V1-31UVM249.conf*.
 - `sudo a2ensite 2A4V1-31UVM249` : Activation du site.
 - `systemctl reload apache2` : Rechargement de la configuration d'apache.
-- Vérification de l'accès du serveur (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
+- Vérification de l'accès au serveur (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
 
 ## 3. Serveur Web sécurisé https
 **Travail à réaliser**
@@ -74,10 +74,10 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - Aucun paquets manquants.
 - `sudo mkdir /etc/apache2/ssl` : Création d'un répertoire pour stocker le certificat.
 - `sudo /usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem` : Création du certificat correspondant à notre site dans le répertoire */etc/apache2/ssl*.
-- `nano /etc/apache2/ports.conf` : Vérification du port d'écoute par défaut en ssl (443).
+- `cat /etc/apache2/ports.conf` : Vérification du port d'écoute par défaut en ssl (443).
 - `cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/mon-serveur-ssl.conf` : Création du fichier de configuration VirtualHost de notre serveur ssl.
 - `sudo nano /etc/apache2/sites-available/mon-serveur-ssl.conf` : Modification du fichier *mon-serveur-ssl.conf*.
-- `a2enmod ssl` : Activation du module ssl d'apache.
+- `sudo a2enmod ssl` : Activation du module ssl d'apache2.
 - `a2ensite mon-serveur-ssl.conf` : Activation de notre site.
 - `systemctl restart apache2` : Redémarrage du service apache2.
 - Vérification de l'accès aux pages (**http://2A4V1-31UVM249.ad-urca.univ-reims.fr**).
@@ -121,7 +121,7 @@ Réalisée par **SIKORA Tom** et **DARROZES Guillaume** du groupe 3, et encadré
 - `cd mon_serveur` : Placement dans le répertoire *mon_serveur*.
 - `wget https://fr.wordpress.org/latest-fr_FR.zip` : Téléchargement de l’archive WordPress dans le répertoire personnel de l'utilisateur iut.
 - `sudo apt-get install unzip` : Installation du paquet unzip.
-- `unzip latest-fr_FR.zip` : Decompression du fichier *latest-fr_FR.zip*.
+- `unzip latest-fr_FR.zip` : Décompression du fichier *latest-fr_FR.zip*.
 - `sudo chown -R iut:www-data .` : Attribution des droits d’accès à l’utilisateur du serveur Web www-data pour le répertoire courant.
 - `sudo chmod -R 775 wordpress/` : Affectation des droits par défaut pour le répertoire *wordpress*.
 - `mysql -u root -p` : Connexion en tant que root.
